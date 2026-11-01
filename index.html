@@ -56,6 +56,18 @@
             color: #2f3542;
             background-color: #f1f2f6;
         }
+        .waktu-box {
+            margin-top: 20px;
+            padding: 12px;
+            border: 1px solid #dfe4ea;
+            border-radius: 10px;
+            font-size: 14px;
+            color: #57606f;
+        }
+        .waktu-box span {
+            font-weight: bold;
+            color: #2f3542;
+        }
     </style>
 </head>
 <body>
@@ -69,7 +81,35 @@
         <div class="identitas">
             Haikal Apriandi - 102042430031
         </div>
+
+        <div class="waktu-box">
+            Waktu Sekarang:<br>
+            <span id="waktu">Memuat waktu...</span>
+        </div>
     </div>
 
+    <script>
+        // Script untuk menampilkan waktu real-time
+        function updateWaktu() {
+            const sekarang = new Date();
+            
+            // Format tanggal: DD/MM/YYYY
+            const tanggal = String(sekarang.getDate()).padStart(2, '0');
+            const bulan = String(sekarang.getMonth() + 1).padStart(2, '0');
+            const tahun = sekarang.getFullYear();
+            
+            // Format waktu: HH:MM:SS
+            const jam = String(sekarang.getHours()).padStart(2, '0');
+            const menit = String(sekarang.getMinutes()).padStart(2, '0');
+            const detik = String(sekarang.getSeconds()).padStart(2, '0');
+            
+            const formatWaktu = `${tanggal}/${bulan}/${tahun}, ${jam}:${menit}:${detik}`;
+            document.getElementById('waktu').textContent = formatWaktu;
+        }
+
+        // Jalankan fungsi setiap 1 detik
+        setInterval(updateWaktu, 1000);
+        updateWaktu(); // Panggil sekali agar langsung muncul
+    </script>
 </body>
 </html>
